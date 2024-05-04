@@ -14,14 +14,10 @@ class MetalRipplesRenderer: NSObject, MTKViewDelegate {
     let commandQueue: MTLCommandQueue
     let pipelineState: MTLRenderPipelineState
     
-    // This is the initializer for the Renderer class.
-    // We will need access to the mtkView later, so we add it as a parameter here.
     init?(metalView: MTKView) {
         device = metalView.device!
-        
         commandQueue = device.makeCommandQueue()!
         
-        // Create the Render Pipeline
         do {
             pipelineState = try MetalRipplesRenderer.buildRenderPipelineWith(device: device, metalKitView: metalView)
         } catch {

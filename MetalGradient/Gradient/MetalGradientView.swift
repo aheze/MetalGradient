@@ -13,16 +13,12 @@ class MetalGradientView: NSView {
     var metalView = MTKView()
 
     lazy var renderer: MetalRipplesRenderer? = {
-        // Then we create the default device, and configure mtkView with it
         guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
             print("Metal is not supported on this device")
             return nil
         }
 
-        print("My GPU is: \(defaultDevice)")
         metalView.device = defaultDevice
-
-        // Lastly we create an instance of our Renderer object, and set it as the delegate of mtkView
         guard let renderer = MetalRipplesRenderer(metalView: metalView) else {
             print("Renderer failed to initialize")
             return nil
