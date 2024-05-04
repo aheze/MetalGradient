@@ -10,7 +10,9 @@
 		3CAA63672BE62091007926BF /* MetalGradientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA63662BE62091007926BF /* MetalGradientApp.swift */; };
 		3CAA63692BE62091007926BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA63682BE62091007926BF /* ContentView.swift */; };
 		3CAA636B2BE62092007926BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CAA636A2BE62092007926BF /* Assets.xcassets */; };
-		3CAA636E2BE62092007926BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CAA636D2BE62092007926BF /* Preview Assets.xcassets */; };
+		3CAA637B2BE620D7007926BF /* MetalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA637A2BE620D7007926BF /* MetalGradientView.swift */; };
+		3CAA637D2BE620E1007926BF /* MetalGradientRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA637C2BE620E1007926BF /* MetalGradientRenderer.swift */; };
+		3CAA637F2BE62186007926BF /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA637E2BE62186007926BF /* Shaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,8 +20,10 @@
 		3CAA63662BE62091007926BF /* MetalGradientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalGradientApp.swift; sourceTree = "<group>"; };
 		3CAA63682BE62091007926BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3CAA636A2BE62092007926BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3CAA636D2BE62092007926BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3CAA636F2BE62092007926BF /* MetalGradient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalGradient.entitlements; sourceTree = "<group>"; };
+		3CAA637A2BE620D7007926BF /* MetalGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalGradientView.swift; sourceTree = "<group>"; };
+		3CAA637C2BE620E1007926BF /* MetalGradientRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalGradientRenderer.swift; sourceTree = "<group>"; };
+		3CAA637E2BE62186007926BF /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,20 +57,22 @@
 			isa = PBXGroup;
 			children = (
 				3CAA63662BE62091007926BF /* MetalGradientApp.swift */,
+				3CAA63802BE6218C007926BF /* Gradient */,
 				3CAA63682BE62091007926BF /* ContentView.swift */,
 				3CAA636A2BE62092007926BF /* Assets.xcassets */,
 				3CAA636F2BE62092007926BF /* MetalGradient.entitlements */,
-				3CAA636C2BE62092007926BF /* Preview Content */,
 			);
 			path = MetalGradient;
 			sourceTree = "<group>";
 		};
-		3CAA636C2BE62092007926BF /* Preview Content */ = {
+		3CAA63802BE6218C007926BF /* Gradient */ = {
 			isa = PBXGroup;
 			children = (
-				3CAA636D2BE62092007926BF /* Preview Assets.xcassets */,
+				3CAA637A2BE620D7007926BF /* MetalGradientView.swift */,
+				3CAA637C2BE620E1007926BF /* MetalGradientRenderer.swift */,
+				3CAA637E2BE62186007926BF /* Shaders.metal */,
 			);
-			path = "Preview Content";
+			path = Gradient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,6 +107,7 @@
 				TargetAttributes = {
 					3CAA63622BE62091007926BF = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 				};
 			};
@@ -127,7 +134,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CAA636E2BE62092007926BF /* Preview Assets.xcassets in Resources */,
 				3CAA636B2BE62092007926BF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +147,9 @@
 			files = (
 				3CAA63692BE62091007926BF /* ContentView.swift in Sources */,
 				3CAA63672BE62091007926BF /* MetalGradientApp.swift in Sources */,
+				3CAA637D2BE620E1007926BF /* MetalGradientRenderer.swift in Sources */,
+				3CAA637B2BE620D7007926BF /* MetalGradientView.swift in Sources */,
+				3CAA637F2BE62186007926BF /* Shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,11 +279,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MetalGradient/MetalGradient.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MetalGradient/Preview Content\"";
 				DEVELOPMENT_TEAM = WV6XDLHK3W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -288,6 +297,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.getfind.MetalGradient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -297,11 +307,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MetalGradient/MetalGradient.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MetalGradient/Preview Content\"";
 				DEVELOPMENT_TEAM = WV6XDLHK3W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

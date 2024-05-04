@@ -15,6 +15,9 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+            
+            MetalGradientViewRepresentable()
+                .border(.blue)
         }
         .padding()
     }
